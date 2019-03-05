@@ -1,0 +1,10 @@
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\SerialToKey\bin\Debug\SerialToKey.exe.config
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\SerialToKey\bin\Debug\SerialToKey.exe
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\SerialToKey\bin\Debug\SerialToKey.pdb
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\SerialToKey\obj\Debug\SerialToKey.csprojAssemblyReference.cache
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\SerialToKey\obj\Debug\SerialToKey.Form1.resources
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\SerialToKey\obj\Debug\SerialToKey.Properties.Resources.resources
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\SerialToKey\obj\Debug\SerialToKey.csproj.GenerateResource.cache
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\SerialToKey\obj\Debug\SerialToKey.csproj.CoreCompileInputs.cache
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\SerialToKey\obj\Debug\SerialToKey.exe
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\SerialToKey\obj\Debug\SerialToKey.pdb
