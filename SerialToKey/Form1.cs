@@ -19,119 +19,8 @@ namespace SerialToKey
  
   public partial class Form1 : Form
   {
-
-
-    #region SerialPort
-
-    SerialPort Serial_Port = new System.IO.Ports.SerialPort();
-
-    //串口标志位
-    private bool isSerialPortFalg = false;
-    public bool IsSerialPortFalg
-    {
-      get { return isSerialPortFalg; }
-      set { isSerialPortFalg = value; }
-    }
-    //串口名
-    private string serialPortName = "COM1";
-    public string SerialPortNmae
-    {
-      get { return serialPortName; }
-      set { serialPortName = value; }
-    }
-    //波特率
-    private int serialPort = 9600;
-    public int SerialPort
-    {
-      get { return serialPort; }
-      set { serialPort = value; }
-    }
-
-    //发送数据Buffer
-    byte[] Serial_Buffer = new byte[1024];
-    /// <summary>
-    /// 初始化打开COM口
-    /// </summary>
-    public void RS232_Init()
-    {
-      try
-      {
-
-        Serial_Port.PortName = serialPortName;                         //连接端口名
-        Serial_Port.BaudRate = serialPort;                             //串口波特率
-        Serial_Port.ReadTimeout = 10000000;
-        Serial_Port.StopBits = System.IO.Ports.StopBits.One;            //停止位
-        Serial_Port.Parity = System.IO.Ports.Parity.None;               //奇偶校验
-        Serial_Port.DataBits = 8;                                       //数据位
-
-        if (Serial_Port.IsOpen)
-        {
-          Serial_Port.Close();
-        }
-
-        Serial_Port.Open();
-        Serial_Port.DiscardInBuffer();                                  //清空缓存
-        Serial_Port.DiscardOutBuffer();                                 //清空通道
-        isSerialPortFalg = true;                                        //位开启
-        button1.Invoke((EventHandler)delegate { button1.Enabled = false; });
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show(ex.ToString());
-      }
-    }
-
-    /// <summary>
-    /// 发送字符串
-    /// </summary>
-    /// <param name="outStr"></param>
-    private void RS232_WriteBuffer(string outStr)
-    {
-      try
-      {
-        if (isSerialPortFalg)
-        {
-          Application.DoEvents();
-          Serial_Buffer = System.Text.Encoding.ASCII.GetBytes(outStr);            //将字符串转换为位
-          Serial_Port.Write(Serial_Buffer, 0, 0);                                 //发送位
-        }
-        else
-          MessageBox.Show("串口未连接");
-      }
-      catch (Exception ex) { MessageBox.Show(ex.ToString()); }
-    }
-
-    /// <summary>
-    /// 接收RS232数据
-    /// </summary>
-    /// <param name="Receive"></param>x
-    private void RS232_ReadBuffer(out string Receive)
-    {
-
-      try
-      {
-        if (isSerialPortFalg)
-        {
-          int count = Serial_Port.BytesToRead;
-          Byte[] BufferData = new Byte[count];
-          if (isSerialPortFalg)
-          {
-            Receive = null;
-            Serial_Port.Read(BufferData, 0, count);
-            Receive += Encoding.UTF8.GetString(BufferData);
-          }
-          else
-            Receive = "串口未连接";
-        }
-        else
-        {
-          Receive = "串口未连接";
-        }
-      }
-      catch (Exception ex) {  Receive = "Error"; }
-    }
-
-    #endregion
+    //实例化SerialCommection类
+    SerialCommection Serial_Port = new SerialCommection();
 
     #region InitSerialPortThread
 
@@ -159,7 +48,7 @@ namespace SerialToKey
           lock (threadInitSerialPortLock)
           {
             isInitSerialPortThreadFinsh = true;
-            RS232_Init();
+            Serial_Port.Connection();
             isInitSerialPortThreadFinsh = false;
           }
           eventSignalInitSerialPort.WaitOne();
@@ -199,11 +88,10 @@ namespace SerialToKey
           //跨线程获取控件内容
           string serial = null;
           textBox5.Invoke(new MethodInvoker(() => { serial = textBox5.Text; }));
-          //------------------
           lock (threadSendMessageLock)
           {
             isSendMessageThreadFinsh = true;
-            RS232_WriteBuffer(serial);
+            Serial_Port.SendMessage(serial);
             isSendMessageThreadFinsh = false;
           }
           eventSignalSendMessage.WaitOne();
@@ -245,19 +133,17 @@ namespace SerialToKey
         {
           lock (threadReceiveMessageLock)
           {
-            if(isSerialPortFalg)
+            isReceiveMessageThreadFinish = true;
+            outMessage = Serial_Port.ReadMessage();
+            outMessage = outMessage.Replace("\0", "");
+            if (outMessage != null && outMessage != "")
             {
-              isReceiveMessageThreadFinish = true;
-              RS232_ReadBuffer(out outMessage);
-              outMessage = outMessage.Replace("\0", "");
-              if (outMessage != null && outMessage != "")
-              {
-                textBox4.Invoke((EventHandler)delegate { textBox4.Text = outMessage; });
-                pendMessage = outMessage;
-                eventComToKey.Set();
-              }
-              isReceiveMessageThreadFinish = false;
+              textBox4.Invoke((EventHandler)delegate { textBox4.Text = outMessage; });
+              pendMessage = outMessage;
+              eventComToKey.Set();
             }
+            isReceiveMessageThreadFinish = false;
+
           }
           eventReceiveThreadSingle.WaitOne();
         } while (true);
@@ -300,8 +186,8 @@ namespace SerialToKey
         {
           Save.WriteComment("ParameterRecord");
           Save.WriteStartElement("MachineParameter");
-          Save.WriteElementString("波特率", serialPort.ToString());
-          Save.WriteElementString("端口号", serialPortName);
+          Save.WriteElementString("波特率", Serial_Port.DestinationPort.ToString());
+          Save.WriteElementString("端口号", Serial_Port.DestinationPortName);
           Save.WriteElementString("起始位", startBit.ToString());
           Save.WriteElementString("结束位", endBit.ToString());
 
@@ -335,9 +221,9 @@ namespace SerialToKey
               foreach (XmlNode Node in Read.DocumentElement.ChildNodes)
               {
                 if (Node.LocalName == "波特率" && Node.HasChildNodes)
-                  serialPort = Convert.ToInt32(Node.FirstChild.Value);
+                  Serial_Port.DestinationPort = Convert.ToInt32(Node.FirstChild.Value);
                 if (Node.LocalName == "端口号" && Node.HasChildNodes)
-                  serialPortName = Convert.ToString(Node.FirstChild.Value);
+                  Serial_Port.DestinationPortName = Convert.ToString(Node.FirstChild.Value);
                 if (Node.LocalName == "起始位" && Node.HasChildNodes)
                   startBit = Convert.ToInt32(Node.FirstChild.Value);
                 if (Node.LocalName == "结束位" && Node.HasChildNodes)
@@ -428,8 +314,8 @@ namespace SerialToKey
       try
       {
         ReadParame(Application.StartupPath + "\\系统配置.xml");
-        comboBox1.SelectedItem = serialPortName;
-        textBox1.Text = serialPort.ToString();
+        comboBox1.SelectedItem = Serial_Port.DestinationPortName;
+        textBox1.Text = Serial_Port.DestinationPort.ToString();
         textBox2.Text = startBit.ToString();
         textBox3.Text = endBit.ToString();
         //创建串口转键盘线程
@@ -522,19 +408,18 @@ namespace SerialToKey
     {
       try
       {
-        serialPortName = Convert.ToString(comboBox1.SelectedItem);
+        Serial_Port.DestinationPortName = Convert.ToString(comboBox1.SelectedItem);
        
       }
       catch (Exception)
       {
-
-        throw;
+        
       }
     }
 
     private void textBox1_TextChanged(object sender, EventArgs e)
     {
-      serialPort = Convert.ToInt32(textBox1.Text);
+      Serial_Port.DestinationPort = Convert.ToInt32(textBox1.Text);
     }
 
     private void textBox2_TextChanged(object sender, EventArgs e)
@@ -594,7 +479,6 @@ namespace SerialToKey
       {
         eventReceiveThreadSingle.Reset();
         Serial_Port.Close();
-        isSerialPortFalg = false;
         button1.Enabled = true;
         button4.Enabled = false;
       }

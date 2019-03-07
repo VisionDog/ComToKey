@@ -8,3 +8,13 @@ F:\C#_Amass\C#Test\SerialToKey\SerialToKey\SerialToKey\obj\Release\SerialToKey.c
 F:\C#_Amass\C#Test\SerialToKey\SerialToKey\SerialToKey\obj\Release\SerialToKey.exe
 F:\C#_Amass\C#Test\SerialToKey\SerialToKey\SerialToKey\obj\Release\SerialToKey.pdb
 F:\C#_Amass\C#Test\SerialToKey\SerialToKey\SerialToKey\obj\Release\SerialToKey.csprojAssemblyReference.cache
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\bin\Release\SerialToKey.exe.config
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\bin\Release\SerialToKey.exe
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\bin\Release\SerialToKey.pdb
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\obj\Release\SerialToKey.csprojAssemblyReference.cache
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\obj\Release\SerialToKey.Form1.resources
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\obj\Release\SerialToKey.Properties.Resources.resources
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\obj\Release\SerialToKey.csproj.GenerateResource.cache
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\obj\Release\SerialToKey.csproj.CoreCompileInputs.cache
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\obj\Release\SerialToKey.exe
+F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\obj\Release\SerialToKey.pdb
