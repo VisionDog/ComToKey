@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<!--ParameterRecord-->
-<MachineParameter>
-  <波特率>115200</波特率>
-  <端口号>COM4</端口号>
-  <起始位>1</起始位>
-  <结束位>5</结束位>
-</MachineParameter>

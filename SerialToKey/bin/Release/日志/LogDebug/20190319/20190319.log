@@ -1,0 +1,71 @@
+
+异常时间：2019-03-19 23:03:11,394 [1] 
+异常级别：DEBUG 
+异常位置：[1] (F:\log4net\Logger\Logger\Class1.cs:74) 
+消息描述：System.IO.FileNotFoundException: 未能找到文件“F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\bin\Release\系统配置.xml”。
+文件名:“F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\bin\Release\系统配置.xml”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   在 System.Xml.XmlDownloadManager.GetStream(Uri uri, ICredentials credentials, IWebProxy proxy, RequestCachePolicy cachePolicy)
+   在 System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+   在 System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+   在 System.Threading.CompressedStack.runTryCode(Object userData)
+   在 System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+   在 System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+   在 System.Xml.XmlTextReaderImpl.OpenUrl()
+   在 System.Xml.XmlTextReaderImpl.Read()
+   在 System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   在 System.Xml.XmlDocument.Load(XmlReader reader)
+   在 System.Xml.XmlDocument.Load(String filename)
+   在 SerialToKey.Form1.ReadParame(String filename) 位置 F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\Form1.cs:行号 214
+异常：
+
+异常类名：Logger.Logger4net
+ 
+异常时间：2019-03-19 23:03:11,511 [InitSerialPort] 
+异常级别：DEBUG 
+异常位置：[InitSerialPort] (F:\log4net\Logger\Logger\Class1.cs:74) 
+消息描述：System.ArgumentException: PortName 不能为空。
+参数名: PortName
+   在 System.IO.Ports.SerialPort.set_PortName(String value)
+   在 SerialToKey.SerialCommection.Connection() 位置 F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\SerialCommection.cs:行号 54
+异常：
+
+异常类名：Logger.Logger4net
+ 
+异常时间：2019-03-19 23:04:38,084 [1] 
+异常级别：DEBUG 
+异常位置：[1] (F:\log4net\Logger\Logger\Class1.cs:74) 
+消息描述：System.IO.FileNotFoundException: 未能找到文件“F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\bin\Release\系统配置.xml”。
+文件名:“F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\bin\Release\系统配置.xml”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   在 System.Xml.XmlDownloadManager.GetStream(Uri uri, ICredentials credentials, IWebProxy proxy, RequestCachePolicy cachePolicy)
+   在 System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+   在 System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+   在 System.Threading.CompressedStack.runTryCode(Object userData)
+   在 System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+   在 System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+   在 System.Xml.XmlTextReaderImpl.OpenUrl()
+   在 System.Xml.XmlTextReaderImpl.Read()
+   在 System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   在 System.Xml.XmlDocument.Load(XmlReader reader)
+   在 System.Xml.XmlDocument.Load(String filename)
+   在 SerialToKey.Form1.ReadParame(String filename) 位置 F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\Form1.cs:行号 214
+异常：
+
+异常类名：Logger.Logger4net
+ 
+异常时间：2019-03-19 23:04:38,176 [InitSerialPort] 
+异常级别：DEBUG 
+异常位置：[InitSerialPort] (F:\log4net\Logger\Logger\Class1.cs:74) 
+消息描述：System.ArgumentException: PortName 不能为空。
+参数名: PortName
+   在 System.IO.Ports.SerialPort.set_PortName(String value)
+   在 SerialToKey.SerialCommection.Connection() 位置 F:\C#_Amass\C#Test\SerialToKey\SerialToKey\ComToKey\SerialToKey\SerialCommection.cs:行号 54
+异常：
+
+异常类名：Logger.Logger4net
+ 

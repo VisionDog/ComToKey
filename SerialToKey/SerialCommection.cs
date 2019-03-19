@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO.Ports;
+using Logger;
 
 namespace SerialToKey
 {
@@ -70,13 +71,16 @@ namespace SerialToKey
       }
       catch (Exception ex)
       {
-        
+        Logger4net.Entrance.Debug(ex);
         return false;
       }
      
 
       
     }
+
+
+
     /// <summary>
     /// 实现ICommunication接口方法：断开连接
     /// </summary>

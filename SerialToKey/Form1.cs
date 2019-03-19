@@ -232,15 +232,14 @@ namespace SerialToKey
             }
           }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-
-          throw;
+          Logger.Logger4net.Entrance.Debug(ex);
         }
       }
       catch (Exception ex)
       {
-        MessageBox.Show(ex.ToString());
+        Logger.Logger4net.Entrance.Debug(ex);
       }
 
     }
@@ -350,10 +349,9 @@ namespace SerialToKey
           eventReceiveThreadSingle.Set();
         }
       }
-      catch (Exception)
+      catch (Exception ex)
       {
-
-        throw;
+        Logger.Logger4net.Entrance.Debug(ex);
       }
     }
  
